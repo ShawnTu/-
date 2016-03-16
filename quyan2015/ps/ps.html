@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<title>趣颜</title>
+		<link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8"/>
+		<style>
+			.inputstyle{
+    			width: 144px;
+    			height: 5px;
+    			cursor: pointer;
+    			font-size: 30px;
+    			outline: medium none;
+    			position: relative;
+    			filter:alpha(opacity=0);
+    			-moz-opacity:0;
+    			opacity:0; 
+    			left:0px;
+    			top: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="nvtt">趣颜</div>
+		</header>
+		<div id="dcontent" class="dcontent">
+			<form action="ps2.php" method="post" enctype="multipart/form-data">
+				<div id="chooseButton" class="button">
+    				<div>拍照或选择照片</div>
+    				<input id="file"  class="inputstyle" name="file" type="file"/>
+				</div>
+				<div id="uploadButton" class="button">
+					<div>上传</div>
+					<input id="submit" name="submit" class="inputstyle" type="submit"  value="上传"></input>
+				</div>
+			</form>
+			
+			<div id="pageDecorationContainer">
+				<img src="img/pageDecoration.jpg" />
+			</div>
+		</div>
+	</body>
+</html>

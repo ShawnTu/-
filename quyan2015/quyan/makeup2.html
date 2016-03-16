@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta http-equiv="Page-Enter" content="revealTrans(Duration=2.0,Transition=12)" />
+		<title>趣颜</title>
+		<link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8"/>
+   		<link rel="stylesheet" href="css/mui.css" type="text/css" charset="utf-8"/>
+   		<link rel="stylesheet" href="css/app.css" type="text/css" charset="utf-8"/>
+   		<style>
+   			body{
+   				background: url(img/page-background.jpg);
+   			}
+  		</style>
+  		<script src="js/jquery-1.11.1.min.js"></script>
+   		<script src="js/mui.min.js"></script>   
+   		<script>
+   		window.onload = function(){ 
+   			urlParameter = window.location.search;
+   			randomNum = urlParameter.split("=")[1];
+   			
+   			$.getJSON('http://127.0.0.1:8089/test/?randomNum=' + randomNum,function(result){
+    				//alert(result);
+    				document.getElementById("followingPhoto").src = result.imgUrl;
+    		});	
+    	}; 
+    	
+ 		function ladyStyle(){
+ 			$.getJSON('http://127.0.0.1:8089/test/?randomNum=' + randomNum,function(result){
+    				//alert(result);
+    				document.getElementById("followingPhoto").src = result.imgUrl;
+    		});
+ 		}
+ 		
+ 		function vintageMonster(){
+ 			$.getJSON('http://127.0.0.1:8089/test/?randomNum=' + randomNum,function(result){
+    				//alert(result);
+    				document.getElementById("followingPhoto").src = result.imgUrl;
+    		});
+ 		}
+ 		
+ 		function funnyExpert(){
+ 			$.getJSON('http://127.0.0.1:8089/test/?randomNum=' + randomNum,function(result){
+    				//alert(result);
+    				document.getElementById("followingPhoto").src = result.imgUrl;
+    		});
+ 		}
+ 		
+ 		function randomDress(){
+ 			$.getJSON('http://127.0.0.1:8089/test/?randomNum=' + randomNum,function(result){
+    				//alert(result);
+    				document.getElementById("followingPhoto").src = result.imgUrl;
+    		});
+ 		}
+ 		
+ 		function promptSavePhoto(){
+   			alert("亲，长按图片可以保存哦~");
+   		}		
+   		</script>
+	</head>
+	<body>
+		<header>
+			<div class="nvtt">
+				<a class="mui-action-back mui-pull-left">
+					<img src="img/backButton.png" />
+				</a>
+				趣颜
+				<a class="mui-pull-right">
+					<img src="img/saveButton.png" onclick="promptSavePhoto()"/>
+				</a>
+			</div>
+		</header>
+		<div id="dcontent" class="dcontent">
+			<!--			
+			<div id="followingPhotoContainer">
+				<img id="followingPhoto" alt="处理后照片" crossOrigin = "Anonymous"/>
+			</div>
+			-->
+			<div id="followingPhotoContainer" class="mui-content">
+				<div class="mui-slider-item">
+		            <ul class="mui-table-view mui-grid-view">
+		                <li class="mui-table-view-cell mui-media mui-col-xs-12"><img id="followingPhoto" class="mui-media-object" src="img/2-originalPhoto.png"  alt="处理后照片" crossOrigin = "Anonymous" />
+		                </li>
+		            </ul>
+		          </div>
+			</div>
+			<div id="filterThumb" class="mui-content2">
+				<div class="mui-slider">	          
+		            <div class="mui-slider-item">
+		                <ul class="mui-table-view mui-grid-view">
+		                    <li class="mui-table-view-cell mui-media mui-col-xs-2"><img class="mui-media-object" src="img/comic1.jpg" onclick="ladyStyle()">
+		                            <div class="mui-media-body">名媛贵族</div></li>
+		                    <li class="mui-table-view-cell mui-media mui-col-xs-2"><img class="mui-media-object" src="img/comic1.jpg" onclick="vintageMonster()">
+		                            <div class="mui-media-body">复古小妖</div></li>
+		                    <li class="mui-table-view-cell mui-media mui-col-xs-2"><img class="mui-media-object" src="img/comic1.jpg" onclick="funnyExpert()">
+		                            <div class="mui-media-body">搞怪达人</div></li>
+		                    <li class="mui-table-view-cell mui-media mui-col-xs-2"><img class="mui-media-object" src="img/comic1.jpg" onclick="randomDress()">
+		                            <div class="mui-media-body">随机</div></li>
+		                </ul>
+		            </div>           	 		  
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

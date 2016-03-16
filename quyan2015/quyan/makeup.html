@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<title>趣颜</title>
+		<link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8"/>
+		<style>
+			.inputstyle{
+    			width: 144px;
+    			height: 5px;
+    			cursor: pointer;
+    			font-size: 30px;
+    			outline: medium none;
+    			position: relative;
+    			filter:alpha(opacity=0);
+    			-moz-opacity:0;
+    			opacity:0; 
+    			left:0px;
+    			top: 0px;
+			}
+		</style>
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/ajaxfileupload.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+randomNum = Math.round(Math.random()*10000);
+	
+$("#upload").click(function(){	
+	$.ajaxFileUpload({
+        url:'http://127.0.0.1:8089/test/?randomNum=' + randomNum,//处理图片脚本
+        secureuri :false,
+        fileElementId :'file',//file控件id
+        dataType : 'json',
+        success : function (data, status){     
+        	window.open('makeup2.html?randomNum=' + randomNum);
+            if(typeof(data.error) != 'undefined'){
+                if(data.error != ''){
+                    alert(data.error);
+                }else{
+                    alert(data.msg);
+                }
+        	}
+        },
+        error: function(data, status, e){
+            alert(e);
+        }      
+});
+});
+});
+</script>
+	</head>
+	<body>
+		<header>
+			<div class="nvtt">趣颜</div>
+		</header>
+		<div id="dcontent" class="dcontent">
+			<div id="chooseButton" class="button">
+    			<div>拍照或选择照片</div>
+    			<input id="file"  class="inputstyle" name="file" type="file"/>
+			</div>
+			<div id="uploadButton" class="button">
+				<div>上传</div>
+				<input id="upload" class="inputstyle" type="button"  value="上传"></input>
+			</div>
+			
+			<div id="pageDecorationContainer">
+				<img src="img/pageDecoration.jpg" />
+			</div>
+		</div>
+	</body>
+</html>

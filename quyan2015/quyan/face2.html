@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta http-equiv="Page-Enter" content="revealTrans(Duration=2.0,Transition=12)" />
+		<title>趣颜</title>
+		<link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8"/>
+   		<link rel="stylesheet" href="css/mui.css" type="text/css" charset="utf-8"/>
+   		<link rel="stylesheet" href="css/app.css" type="text/css" charset="utf-8"/>
+   		<style>
+   			body{
+   				background: url(img/page-background.jpg);
+   			}
+  		</style>
+   		<script src="js/jquery-1.11.1.min.js"></script>
+   		<script src="js/mui.min.js"></script>   
+   		<script>
+   		window.onload = function(){ 
+   			urlParameter = window.location.search;
+   			randomNum = urlParameter.split("=")[1];
+   			var resultExpression;
+   			
+   			$.getJSON('http://127.0.0.1:8089/test/?randomNum=' + randomNum,function(result){
+    				//alert(result);
+    				document.getElementById("followingPhoto").src = result.imgUrl;
+    				resultExpression = result.value;
+    		});
+    		
+    		//颜值评价
+    		var expressionValue = resultExpression = 95;	
+    		if (expressionValue <= 50) {
+ 						var text1 = document.createTextNode("哦我的天吶！您的颜值只有 " + expressionValue);
+ 						document.getElementById("review1").appendChild(text1);
+ 						var text2 = document.createTextNode("童鞋冒昧的问一句你是火星来的吗？");
+ 						document.getElementById("review2").appendChild(text2);
+    		}  else if (expressionValue > 51 && expressionValue <=60) {
+    				var text1 = document.createTextNode("差强人意哦，您的颜值达到了 " + expressionValue);
+ 						document.getElementById("review1").appendChild(text1);
+ 						var text2 = document.createTextNode("客官看好你呦内在美最重要了！");
+ 						document.getElementById("review2").appendChild(text2);
+    		} else if (expressionValue > 61 && expressionValue <=70) {
+    				var text1 = document.createTextNode("马马虎虎，您的颜值逼近 " + expressionValue);
+ 						document.getElementById("review1").appendChild(text1);
+ 						var text2 = document.createTextNode("再打扮打扮还是街头的一道靓丽风景线~");
+ 						document.getElementById("review2").appendChild(text2);
+    		} else if (expressionValue > 71 && expressionValue <=80) {
+    				var text1 = document.createTextNode("哎呦不错哦！您的颜值竟有 " + expressionValue);
+ 						document.getElementById("review1").appendChild(text1);
+ 						var text2 = document.createTextNode("这么傲人的颜值老实交代是不是经常有桃花~");
+ 						document.getElementById("review2").appendChild(text2);
+    		} else if (expressionValue > 81 && expressionValue <=90) {
+    				var text1 = document.createTextNode("艾玛！您的颜值高达 " + expressionValue);
+ 						document.getElementById("review1").appendChild(text1);
+ 						var text2 = document.createTextNode("啥都不说啦对于你这样的宠儿除了恋爱我什么都不想跟你谈！");
+ 						document.getElementById("review2").appendChild(text2);
+    		} else if (expressionValue > 91 && expressionValue <=100) {
+    				var text1 = document.createTextNode("天啦噜！您的颜值高达 " + expressionValue);
+ 						document.getElementById("review1").appendChild(text1);
+ 						var text2 = document.createTextNode("前方有男/女神出没，非战斗人员请迅速撤离！");
+ 						document.getElementById("review2").appendChild(text2);
+    		} 
+    		else{
+    			alert("颜值有错误");
+    		}			
+ 		}; 	
+ 		
+ 		function promptSavePhoto(){
+   		alert("亲，长按图片可以保存哦~");
+   		}
+   		</script>
+	</head>
+	<body>
+		<header>
+			<div class="nvtt">
+				<a class="mui-action-back mui-pull-left">
+					<img src="img/backButton.png" />
+				</a>
+				趣颜
+				<a class="mui-pull-right">
+					<img src="img/saveButton.png" onclick="promptSavePhoto()"/>
+				</a>
+			</div>
+		</header>
+		<div id="dcontent" class="dcontent">
+			<!--
+			<div id="followingPhotoContainer">
+				<img id="followingPhoto" alt="处理后照片" crossOrigin = "Anonymous"/>
+			</div>
+			-->
+			<div id="followingPhotoContainer" class="mui-content">
+				<div class="mui-slider-item">
+		            <ul class="mui-table-view mui-grid-view">
+		                <li class="mui-table-view-cell mui-media mui-col-xs-12"><img id="followingPhoto" class="mui-media-object" src="img/2-originalPhoto.png"  alt="处理后照片" crossOrigin = "Anonymous"/>
+		                </li>
+		            </ul>
+		          </div>
+			</div>
+			<div>
+				<h1 id="review1" style="color:#999999;" ></h1>
+				<h1 id="review2" style="color:#999999;"></h1>							
+			</div>				
+		</div>
+	</body>
+</html>

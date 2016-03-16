@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta http-equiv="Page-Enter" content="revealTrans(Duration=2.0,Transition=12)" />
+		<title>趣颜</title>
+		<link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8"/>
+   		<link rel="stylesheet" href="css/mui.css" type="text/css" charset="utf-8"/>
+   		<link rel="stylesheet" href="css/app.css" type="text/css" charset="utf-8"/>
+   		<style>
+   			body{
+   				background: url(img/page-background.jpg);
+   			}
+  		</style>
+  		<script src="js/jquery-1.11.1.min.js"></script>
+   		<script src="js/mui.min.js"></script>   
+   		<script>
+   		window.onload = function(){ 
+   			urlParameter = window.location.search;
+   			randomNum = urlParameter.split("=")[1];
+   			var resultStar;
+   			var resultSimilarity;
+   			
+   			$.getJSON('http://127.0.0.1:8089/test/?randomNum=' + randomNum,function(result){
+    				//alert(result);
+    				document.getElementById("followingPhoto").src = result.imgUrl;
+    				document.getElementById("followingPhoto2").src = result.imgUrl2;
+    				resultStar = result.value;
+    				resultSimilarity = result.value2;
+    		});
+    		
+    		//明星匹配	   
+   			var star =resultStar = "小西彩乃";
+   			var similarity = resultSimilarity = 88;
+   			var text = document.createTextNode("匹配明星：" + star + " " + "相似度：" + similarity);
+   			document.getElementById("review").appendChild(text);
+ 		}; 	
+ 		
+ 		function promptSavePhoto(){
+   			alert("亲，长按图片可以保存哦~");
+   		}
+   		</script>
+	</head>
+	<body>
+		<header>
+			<div class="nvtt">
+				<a class="mui-action-back mui-pull-left">
+					<img src="img/backButton.png" />
+				</a>
+				趣颜
+				<a class="mui-pull-right">
+					<img src="img/saveButton.png" onclick="promptSavePhoto()"/>
+				</a>
+			</div>
+		</header>
+		<div id="dcontent" class="dcontent">
+			<!--
+			<div id="followingPhotoContainer">
+				<img id="followingPhoto" alt="原图"  crossorigin="Anonymous"/>
+				<img id="followingPhoto2" alt="明星图"  crossorigin="Anonymous"/>
+			</div>
+			-->
+			<div id="followingPhotoContainer" class="mui-content">
+				<div class="mui-slider-item">
+		            <ul class="mui-table-view mui-grid-view">
+		                <li class="mui-table-view-cell mui-media mui-col-xs-6"><img id="followingPhoto" class="mui-media-object" src="img/2-originalPhoto.png" alt="原图"  crossorigin="Anonymous" />
+		                </li>
+		                <li class="mui-table-view-cell mui-media mui-col-xs-6"><img id="followingPhoto2" class="mui-media-object" src="img/2-originalPhoto.png" alt="明星图"  crossorigin="Anonymous" />
+		                </li>
+		            </ul>
+		          </div>
+			</div>
+			<h1 id="review" style="color:#999999;"></h1>												
+		</div>
+	</body>
+</html>
